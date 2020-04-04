@@ -12,7 +12,9 @@ class Game:
         print("Welcome to the Labyrinth Game")
 
     def initialize_game(self):
-        labyrinth_size = int(input("Please enter labyrinth size :"))
+        labyrinth_size = 0
+        while (labyrinth_size < 4 or labyrinth_size > 10):
+            labyrinth_size = int(input("Please enter labyrinth size (4 to 10) :"))
         player_pos_x = randint(0, labyrinth_size-1)
         player_pos_y = randint(0, labyrinth_size-1)
 
@@ -24,7 +26,6 @@ class Game:
         command_manager = CommandManager()
         finished = False
         message = ""
-        state = ""
         args = []
         cmd = None
         try:
@@ -35,8 +36,8 @@ class Game:
                 if cmd == None:
                     print(message)
                     continue
-                (finished, state, message) = CommandManager.eval_command(cmd, args, state, self.__labyrinth, self.__player)
-                print(str(state))
+                (finished, message) = CommandManager.eval_command(cmd, args, self.__labyrinth, self.__player)
                 if message != "": print(message)
+            print("End of Game !")
         except:
             print("Unexpected error:", sys.exc_info()[0])

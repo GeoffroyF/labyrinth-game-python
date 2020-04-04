@@ -30,11 +30,11 @@ class CommandManager:
         return None, None, "Command not supported: "
 
     @staticmethod
-    def eval_command(cmd: IUserCommand, args, st, labyrinth, player):
+    def eval_command(cmd: IUserCommand, args, labyrinth, player):
         if cmd.get_args_count() != len(args):
-            return (False, st, "Invalid number of args. Expected: "
+            return (False, "Invalid number of args. Expected: "
                     + str(cmd.get_args_count()) + ", " + "got: " + str(len(args)))
-        return cmd.evaluate(st, args, labyrinth, player)
+        return cmd.evaluate(args, labyrinth, player)
 
     @staticmethod
     def make_commands_dict(cmd_lst):

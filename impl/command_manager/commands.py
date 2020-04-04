@@ -8,8 +8,8 @@ class Quit(IUserCommand):
     def get_args_count(self):
         return 0
 
-    def evaluate(self, state, args, labyrinth, player):
-        return True, state, "Finished"
+    def evaluate(self, args, labyrinth, player):
+        return True, "Finished"
 
 
 class GoUp(IUserCommand):
@@ -19,9 +19,10 @@ class GoUp(IUserCommand):
     def get_args_count(self):
         return 0
 
-    def evaluate(self, state, args, labyrinth, player):
-        success, above_cell = player.move_up(labyrinth)
-        return False, state, str(success) + ": " +str(above_cell)
+    def evaluate(self, args, labyrinth, player):
+        success, above_cell, won = player.move_up(labyrinth)
+        player.pick_up_object(labyrinth)
+        return won, str(success) + ": " + str(above_cell)
 
 
 class GoDown(IUserCommand):
@@ -31,9 +32,10 @@ class GoDown(IUserCommand):
     def get_args_count(self):
         return 0
 
-    def evaluate(self, state, args, labyrinth, player):
-        success, above_cell = player.move_down(labyrinth)
-        return False, state, str(success) + ": " + str(above_cell)
+    def evaluate(self, args, labyrinth, player):
+        success, above_cell, won = player.move_down(labyrinth)
+        player.pick_up_object(labyrinth)
+        return won, str(success) + ": " + str(above_cell)
 
 
 class GoLeft(IUserCommand):
@@ -43,9 +45,10 @@ class GoLeft(IUserCommand):
     def get_args_count(self):
         return 0
 
-    def evaluate(self, state, args, labyrinth, player):
-        success, above_cell = player.move_left(labyrinth)
-        return False, state, str(success) + ": " + str(above_cell)
+    def evaluate(self, args, labyrinth, player):
+        success, above_cell, won = player.move_left(labyrinth)
+        player.pick_up_object(labyrinth)
+        return won, str(success) + ": " + str(above_cell)
 
 
 class GoRight(IUserCommand):
@@ -55,9 +58,10 @@ class GoRight(IUserCommand):
     def get_args_count(self):
         return 0
 
-    def evaluate(self, state, args, labyrinth, player):
-        success, above_cell = player.move_right(labyrinth)
-        return False, state, str(success) + ": " + str(above_cell)
+    def evaluate(self, args, labyrinth, player):
+        success, above_cell, won = player.move_right(labyrinth)
+        player.pick_up_object(labyrinth)
+        return won, str(success) + ": " + str(above_cell)
 
 
 class Skip(IUserCommand):
@@ -67,8 +71,8 @@ class Skip(IUserCommand):
     def get_args_count(self):
         return 0
 
-    def evaluate(self, state, args, labyrinth, player):
-        return False, state, "step executed"
+    def evaluate(self, args, labyrinth, player):
+        return False, "step executed"
 
 
 class ShowLabyrinth(IUserCommand):
@@ -78,8 +82,6 @@ class ShowLabyrinth(IUserCommand):
     def get_args_count(self):
         return 0
 
-    def evaluate(self, state, args, labyrinth, player):
-        print("hhh")
-        print(labyrinth)
+    def evaluate(self, args, labyrinth, player):
         labyrinth.show_labyrinth()
-        return False, state, "labyrinth shown"
+        return False, "labyrinth shown"

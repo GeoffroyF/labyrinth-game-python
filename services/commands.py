@@ -9,4 +9,4 @@ class IUserCommand(metaclass = ABCMeta):
     def get_args_count(self): pass
 
     @abstractmethod
-    def evaluate(self, state, args, labyrinth, player): pass
+    def evaluate(self, args, labyrinth, player): pass
