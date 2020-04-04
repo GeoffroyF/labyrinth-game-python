@@ -8,6 +8,9 @@ class Labyrinth:
         self.__size = size
         self.__labyrinth = []
 
+    def get_labyrinth(self):
+        return self.__labyrinth
+
     def generate_labyrinth(self, player_x, player_y):
         treasure_x = -1
         treasure_y = -1
@@ -20,13 +23,13 @@ class Labyrinth:
             row = []
             for j in range(grid_size):
                 if i == 0 or i == grid_size-1 or j == 0 or j == grid_size-1: # monolith
-                    if randint(1, 10) > 2:
+                    if randint(1, 10) < 5:
                         row.append(Cell(CellType.MONOLITH))
                     else:
                         row.append(Cell(CellType.NO_WALL))
 
                 elif i%2 == 0 or j%2 == 0:
-                    if randint(1, 10) > 2:
+                    if randint(1, 10) < 4:
                         row.append(Cell(CellType.WALL))
                     else:
                         row.append(Cell(CellType.NO_WALL))

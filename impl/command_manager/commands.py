@@ -20,8 +20,8 @@ class GoUp(IUserCommand):
         return 0
 
     def evaluate(self, state, args, labyrinth, player):
-        player.move_up(labyrinth)
-        return False, state, "step executed"
+        success, above_cell = player.move_up(labyrinth)
+        return False, state, str(success) + ": " +str(above_cell)
 
 
 class GoDown(IUserCommand):
@@ -32,7 +32,8 @@ class GoDown(IUserCommand):
         return 0
 
     def evaluate(self, state, args, labyrinth, player):
-        return False, state, "step executed"
+        success, above_cell = player.move_down(labyrinth)
+        return False, state, str(success) + ": " + str(above_cell)
 
 
 class GoLeft(IUserCommand):
@@ -43,7 +44,8 @@ class GoLeft(IUserCommand):
         return 0
 
     def evaluate(self, state, args, labyrinth, player):
-        return False, state, "step executed"
+        success, above_cell = player.move_left(labyrinth)
+        return False, state, str(success) + ": " + str(above_cell)
 
 
 class GoRight(IUserCommand):
@@ -54,7 +56,8 @@ class GoRight(IUserCommand):
         return 0
 
     def evaluate(self, state, args, labyrinth, player):
-        return False, state, "step executed"
+        success, above_cell = player.move_right(labyrinth)
+        return False, state, str(success) + ": " + str(above_cell)
 
 
 class Skip(IUserCommand):
