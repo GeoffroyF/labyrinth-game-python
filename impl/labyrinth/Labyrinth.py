@@ -11,12 +11,22 @@ class Labyrinth:
     def get_labyrinth(self):
         return self.__labyrinth
 
-    def generate_labyrinth(self, player_x, player_y):
+    def get_size(self):
+        return self.__size
+
+    def generate_random_treasure_pos(self, player_x, player_y):
         treasure_x = -1
         treasure_y = -1
         while (treasure_x < 0 or treasure_y < 0) or (treasure_x == player_x and treasure_y == player_y):
             treasure_x = randint(0, self.__size - 1)
             treasure_y = randint(0, self.__size - 1)
+        return treasure_x, treasure_y
+
+    def generate_random_exit(self):
+        pass
+
+    def generate_labyrinth(self, player_x: int, player_y: int):
+        treasure_x, treasure_y = self.generate_random_treasure_pos(player_x, player_y)
 
         grid_size = self.__size * 2 + 1
         for i in range(grid_size):
@@ -28,7 +38,7 @@ class Labyrinth:
                     else:
                         row.append(Cell(CellType.NO_WALL))
 
-                elif i%2 == 0 or j%2 == 0:
+                elif i % 2 == 0 or j % 2 == 0:
                     if randint(1, 10) < 4:
                         row.append(Cell(CellType.WALL))
                     else:
@@ -62,6 +72,9 @@ class Labyrinth:
                     print("T", end="")
 
             print("")
+
+    def set_cell(self, pos_x: int, pos_y: int, cell_type: CellType):
+        self.__labyrinth[pos_y][pos_x] = Cell(cell_type)
 
 
 
