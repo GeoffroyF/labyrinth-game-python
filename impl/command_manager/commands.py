@@ -21,7 +21,7 @@ class GoUp(IUserCommand):
 
     def evaluate(self, args, labyrinth, player):
         success, above_cell, won = player.move_up(labyrinth)
-        player.pick_up_object(labyrinth)
+        player.execute_cell_action(labyrinth)
         return won, str(success) + ": " + str(above_cell)
 
 
@@ -34,7 +34,7 @@ class GoDown(IUserCommand):
 
     def evaluate(self, args, labyrinth, player):
         success, above_cell, won = player.move_down(labyrinth)
-        player.pick_up_object(labyrinth)
+        player.execute_cell_action(labyrinth)
         return won, str(success) + ": " + str(above_cell)
 
 
@@ -47,7 +47,7 @@ class GoLeft(IUserCommand):
 
     def evaluate(self, args, labyrinth, player):
         success, above_cell, won = player.move_left(labyrinth)
-        player.pick_up_object(labyrinth)
+        player.execute_cell_action(labyrinth)
         return won, str(success) + ": " + str(above_cell)
 
 
@@ -60,7 +60,7 @@ class GoRight(IUserCommand):
 
     def evaluate(self, args, labyrinth, player):
         success, above_cell, won = player.move_right(labyrinth)
-        player.pick_up_object(labyrinth)
+        player.execute_cell_action(labyrinth)
         return won, str(success) + ": " + str(above_cell)
 
 

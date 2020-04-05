@@ -1,4 +1,4 @@
-from .CellType import *
+from impl.labyrinth.CellType import CellType
 
 
 class Cell:
@@ -7,4 +7,3 @@ class Cell:
 
     def get_cell_type(self):
         return self.__cell_type
-
