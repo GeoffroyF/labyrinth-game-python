@@ -21,11 +21,12 @@ class Player(IPlayer):
     def get_current_cell(self, labyrinth: Labyrinth):
         return labyrinth.get_labyrinth()[(self.__pos_y * 2 + 1)][self.__pos_x * 2 + 1]
 
-    def pick_up_object(self, labyrinth: Labyrinth):
-        current_cell_type = self.get_current_cell(labyrinth).get_cell_type()
-        if current_cell_type == CellType.TREASURE:
-            self.__objects.append(Treasure())
-            labyrinth.set_cell(self.__pos_x * 2 + 1, self.__pos_y * 2 + 1, CellType.EMPTY)
+    def get_pos(self):
+        return self.__pos_x, self.__pos_y
+
+    def execute_cell_action(self, labyrinth: Labyrinth):
+        current_cell = self.get_current_cell(labyrinth)
+        current_cell.execute_action(labyrinth, self)
 
     def move_up(self, labyrinth: Labyrinth):
         above_cell = labyrinth.get_labyrinth()[(self.__pos_y * 2 + 1) - 1][self.__pos_x * 2 + 1].get_cell_type()
