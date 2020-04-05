@@ -24,6 +24,10 @@ class Player(IPlayer):
     def get_pos(self):
         return self.__pos_x, self.__pos_y
 
+    def set_pos(self, x, y):
+        self.__pos_x = x
+        self.__pos_y = y
+
     def execute_cell_action(self, labyrinth: Labyrinth):
         current_cell = self.get_current_cell(labyrinth)
         current_cell.execute_action(labyrinth, self)
