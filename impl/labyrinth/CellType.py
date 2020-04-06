@@ -8,4 +8,4 @@ class CellType(Enum):
     WALL = "wall"
     MONOLITH = "monolith"
     NO_WALL = "no_wall"
-
+    WORMHOLE = "wormhole"

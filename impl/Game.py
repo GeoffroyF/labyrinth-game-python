@@ -12,15 +12,14 @@ class Game:
         print("Welcome to the Labyrinth Game")
 
     def initialize_game(self):
-        labyrinth_size = 0
-        while (labyrinth_size < 4 or labyrinth_size > 10):
-            labyrinth_size = int(input("Please enter labyrinth size (4 to 10) :"))
-        player_pos_x = randint(0, labyrinth_size-1)
-        player_pos_y = randint(0, labyrinth_size-1)
+        labyrinth_size = ""
+        while (not labyrinth_size.isnumeric()) or int(labyrinth_size) < 4 or int(labyrinth_size) > 10:
+            labyrinth_size = input("Please enter labyrinth size (4 to 10) :")
+        labyrinth_size = int(labyrinth_size)
 
         self.__labyrinth = Labyrinth(labyrinth_size)
-        self.__labyrinth.generate_labyrinth(player_pos_x, player_pos_y)
-        self.__player = Player(player_pos_x, player_pos_y)
+        player_pos_x, player_pos_y = self.__labyrinth.generate_labyrinth()
+        self.__player = Player(int(player_pos_x), int(player_pos_y))
 
     def start(self):
         command_manager = CommandManager()

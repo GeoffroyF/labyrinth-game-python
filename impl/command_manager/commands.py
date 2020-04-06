@@ -72,7 +72,28 @@ class Skip(IUserCommand):
         return 0
 
     def evaluate(self, args, labyrinth, player):
+        player.execute_cell_action(labyrinth)
         return False, "step executed"
+
+
+class GoUpShort(GoUp):
+    def get_command_tag(self):
+        return "z"
+
+
+class GoDownShort(GoDown):
+    def get_command_tag(self):
+        return "s"
+
+
+class GoLeftShort(GoLeft):
+    def get_command_tag(self):
+        return "q"
+
+
+class GoRightShort(GoRight):
+    def get_command_tag(self):
+        return "d"
 
 
 class ShowLabyrinth(IUserCommand):

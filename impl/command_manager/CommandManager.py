@@ -12,7 +12,11 @@ class CommandManager:
              GoLeft(),
              GoRight(),
              Skip(),
-             ShowLabyrinth()
+             ShowLabyrinth(),
+             GoUpShort(),
+             GoRightShort(),
+             GoLeftShort(),
+             GoDownShort()
              ])
 
     def parse_user_input(self, user_input):
