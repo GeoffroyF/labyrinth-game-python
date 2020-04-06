@@ -18,6 +18,9 @@ class Player(IPlayer):
     def remove_object(self, obj: LabyrinthObject):
         self.__objects.pop(self.__objects.index(obj))
 
+    def get_objects(self):
+        return self.__objects
+
     def get_current_cell(self, labyrinth: Labyrinth):
         return labyrinth.get_labyrinth()[(self.__pos_y * 2 + 1)][self.__pos_x * 2 + 1]
 
