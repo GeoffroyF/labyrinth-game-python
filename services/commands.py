@@ -2,6 +2,8 @@ from abc import *
 
 
 class IUserCommand(metaclass = ABCMeta):
+    """Interface for all commands"""
+
     @abstractmethod
     def get_command_tag(self): pass
 

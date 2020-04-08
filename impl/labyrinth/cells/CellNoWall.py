@@ -4,6 +4,7 @@ from services.ICell import ICell
 
 
 class CellNoWall(Cell, ICell):
+    """Cell that represent an empty space between other cells. The player can cross this cell while moving."""
 
     def __init__(self):
         super().__init__(CellType.NO_WALL)

@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>terra-incognita.impl.labyrinth.Labyrinth API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>terra-incognita.impl.labyrinth.Labyrinth</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from random import randint
+
+from impl.labyrinth.CellType import CellType
+from impl.labyrinth.cells.CellEmpty import CellEmpty
+from impl.labyrinth.cells.CellMonolith import CellMonolith
+from impl.labyrinth.cells.CellNoWall import CellNoWall
+from impl.labyrinth.cells.CellStart import CellStart
+from impl.labyrinth.cells.CellTreasure import CellTreasure
+from impl.labyrinth.cells.CellWall import CellWall
+from impl.labyrinth.cells.CellWormhole import CellWormhole
+
+
+class Labyrinth:
+    &#34;&#34;&#34;Labyrinth Class, it features the generation and the management of cells&#34;&#34;&#34;
+
+    def __init__(self, size: int):
+        self.__size = size
+        self.__labyrinth = []
+
+    def get_labyrinth(self):
+        return self.__labyrinth
+
+    def get_size(self):
+        return self.__size
+
+    def set_size(self, size):
+        self.__size = size
+
+    def set_labyrinth(self, labyrinth):
+        self.__labyrinth = labyrinth
+
+    def generate_random_exit(self):
+        &#34;&#34;&#34; Generate a random location for the exit&#34;&#34;&#34;
+        exit_x = randint(1, self.__size) * 2 - 1
+        exit_y = randint(1, self.__size) * 2 - 1
+        if randint(0, 1) == 0:
+            exit_x = randint(0, 1) * (self.__size * 2)
+        else:
+            exit_y = randint(0, 1) * (self.__size * 2)
+        return exit_x, exit_y
+
+    def initialize_special_cells(self):
+        &#34;&#34;&#34;All cells that have an action and a specific location are prepared here and returned in an array&#34;&#34;&#34;
+        nb_wormholes = 0
+        if self.__size &lt; 7:
+            nb_wormholes = 3
+        elif self.__size &lt; 9:
+            nb_wormholes = 4
+        else:
+            nb_wormholes = 5
+        special_cells = [CellWormhole(i+1, nb_wormholes) for i in range(nb_wormholes)]
+        special_cells += [CellTreasure(), CellStart()]
+        return special_cells
+
+    def generate_walls(self, exit_x, exit_y, grid_size, row, i, j):
+        &#34;&#34;&#34;It generates the monolith, the exit and the walls. A classic wall has a 40% chance to pop randomly&#34;&#34;&#34;
+        if exit_x == j and exit_y == i:
+            row.append(CellNoWall())
+        elif i == 0 or i == grid_size - 1 or j == 0 or j == grid_size - 1:  # monolith
+            row.append(CellMonolith())
+        elif i % 2 == 0 or j % 2 == 0:
+            if randint(1, 10) &lt; 4:
+                row.append(CellWall())
+            else:
+                row.append(CellNoWall())
+        else:
+            return False
+        return True
+
+    def generate_labyrinth(self):
+        &#34;&#34;&#34;Main generation function that either trigger the geenrate walls , put an empy cell or put a special cell&#34;&#34;&#34;
+        special_cells = self.initialize_special_cells()
+
+        exit_x, exit_y = self.generate_random_exit()
+        start_x, start_y = -1, -1
+        grid_size = self.__size * 2 + 1
+        number_of_active_cells = self.__size * self.__size
+        for i in range(grid_size):
+            row = []
+            for j in range(grid_size):
+                is_wall_space = self.generate_walls(exit_x, exit_y, grid_size, row, i, j)
+                if not is_wall_space:
+                    if randint(0,100) &lt; int((float(len(special_cells)) / number_of_active_cells)*100):
+                        index = randint(0, len(special_cells)-1)
+                        row.append(special_cells[index])
+                        if special_cells[index].get_cell_type() == CellType.STARTING_CELL:
+                            start_x = (j - 1) / 2
+                            start_y = (i - 1) / 2
+                        special_cells.pop(index)
+                    else:
+                        row.append(CellEmpty())
+                    number_of_active_cells -= 1
+
+            self.__labyrinth.append(row)
+        return start_x, start_y
+
+    def show_labyrinth(self):
+        &#34;&#34;&#34;print each cells of the labyrinth&#34;&#34;&#34;
+        for i in self.__labyrinth:
+            for j in i:
+                print(j, end=&#34;&#34;)
+            print(&#34;&#34;)
+
+    def export_labyrinth(self):
+        &#34;&#34;&#34;:returns a string with the labyinth represented by symbols&#34;&#34;&#34;
+        export = &#34;&#34;
+        for i in self.__labyrinth:
+            for j in i:
+                export += str(j)
+            export += &#34;\n&#34;
+        return export
+
+    def set_cell(self, pos_x: int, pos_y: int, cell):
+        &#34;&#34;&#34;Sets a cell at a specific location&#34;&#34;&#34;
+        self.__labyrinth[pos_y][pos_x] = cell</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth"><code class="flex name class">
+<span>class <span class="ident">Labyrinth</span></span>
+<span>(</span><span>size)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Labyrinth Class, it features the generation and the management of cells</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Labyrinth:
+    &#34;&#34;&#34;Labyrinth Class, it features the generation and the management of cells&#34;&#34;&#34;
+
+    def __init__(self, size: int):
+        self.__size = size
+        self.__labyrinth = []
+
+    def get_labyrinth(self):
+        return self.__labyrinth
+
+    def get_size(self):
+        return self.__size
+
+    def set_size(self, size):
+        self.__size = size
+
+    def set_labyrinth(self, labyrinth):
+        self.__labyrinth = labyrinth
+
+    def generate_random_exit(self):
+        &#34;&#34;&#34; Generate a random location for the exit&#34;&#34;&#34;
+        exit_x = randint(1, self.__size) * 2 - 1
+        exit_y = randint(1, self.__size) * 2 - 1
+        if randint(0, 1) == 0:
+            exit_x = randint(0, 1) * (self.__size * 2)
+        else:
+            exit_y = randint(0, 1) * (self.__size * 2)
+        return exit_x, exit_y
+
+    def initialize_special_cells(self):
+        &#34;&#34;&#34;All cells that have an action and a specific location are prepared here and returned in an array&#34;&#34;&#34;
+        nb_wormholes = 0
+        if self.__size &lt; 7:
+            nb_wormholes = 3
+        elif self.__size &lt; 9:
+            nb_wormholes = 4
+        else:
+            nb_wormholes = 5
+        special_cells = [CellWormhole(i+1, nb_wormholes) for i in range(nb_wormholes)]
+        special_cells += [CellTreasure(), CellStart()]
+        return special_cells
+
+    def generate_walls(self, exit_x, exit_y, grid_size, row, i, j):
+        &#34;&#34;&#34;It generates the monolith, the exit and the walls. A classic wall has a 40% chance to pop randomly&#34;&#34;&#34;
+        if exit_x == j and exit_y == i:
+            row.append(CellNoWall())
+        elif i == 0 or i == grid_size - 1 or j == 0 or j == grid_size - 1:  # monolith
+            row.append(CellMonolith())
+        elif i % 2 == 0 or j % 2 == 0:
+            if randint(1, 10) &lt; 4:
+                row.append(CellWall())
+            else:
+                row.append(CellNoWall())
+        else:
+            return False
+        return True
+
+    def generate_labyrinth(self):
+        &#34;&#34;&#34;Main generation function that either trigger the geenrate walls , put an empy cell or put a special cell&#34;&#34;&#34;
+        special_cells = self.initialize_special_cells()
+
+        exit_x, exit_y = self.generate_random_exit()
+        start_x, start_y = -1, -1
+        grid_size = self.__size * 2 + 1
+        number_of_active_cells = self.__size * self.__size
+        for i in range(grid_size):
+            row = []
+            for j in range(grid_size):
+                is_wall_space = self.generate_walls(exit_x, exit_y, grid_size, row, i, j)
+                if not is_wall_space:
+                    if randint(0,100) &lt; int((float(len(special_cells)) / number_of_active_cells)*100):
+                        index = randint(0, len(special_cells)-1)
+                        row.append(special_cells[index])
+                        if special_cells[index].get_cell_type() == CellType.STARTING_CELL:
+                            start_x = (j - 1) / 2
+                            start_y = (i - 1) / 2
+                        special_cells.pop(index)
+                    else:
+                        row.append(CellEmpty())
+                    number_of_active_cells -= 1
+
+            self.__labyrinth.append(row)
+        return start_x, start_y
+
+    def show_labyrinth(self):
+        &#34;&#34;&#34;print each cells of the labyrinth&#34;&#34;&#34;
+        for i in self.__labyrinth:
+            for j in i:
+                print(j, end=&#34;&#34;)
+            print(&#34;&#34;)
+
+    def export_labyrinth(self):
+        &#34;&#34;&#34;:returns a string with the labyinth represented by symbols&#34;&#34;&#34;
+        export = &#34;&#34;
+        for i in self.__labyrinth:
+            for j in i:
+                export += str(j)
+            export += &#34;\n&#34;
+        return export
+
+    def set_cell(self, pos_x: int, pos_y: int, cell):
+        &#34;&#34;&#34;Sets a cell at a specific location&#34;&#34;&#34;
+        self.__labyrinth[pos_y][pos_x] = cell</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.export_labyrinth"><code class="name flex">
+<span>def <span class="ident">export_labyrinth</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>:returns a string with the labyinth represented by symbols</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export_labyrinth(self):
+    &#34;&#34;&#34;:returns a string with the labyinth represented by symbols&#34;&#34;&#34;
+    export = &#34;&#34;
+    for i in self.__labyrinth:
+        for j in i:
+            export += str(j)
+        export += &#34;\n&#34;
+    return export</code></pre>
+</details>
+</dd>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.generate_labyrinth"><code class="name flex">
+<span>def <span class="ident">generate_labyrinth</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Main generation function that either trigger the geenrate walls , put an empy cell or put a special cell</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_labyrinth(self):
+    &#34;&#34;&#34;Main generation function that either trigger the geenrate walls , put an empy cell or put a special cell&#34;&#34;&#34;
+    special_cells = self.initialize_special_cells()
+
+    exit_x, exit_y = self.generate_random_exit()
+    start_x, start_y = -1, -1
+    grid_size = self.__size * 2 + 1
+    number_of_active_cells = self.__size * self.__size
+    for i in range(grid_size):
+        row = []
+        for j in range(grid_size):
+            is_wall_space = self.generate_walls(exit_x, exit_y, grid_size, row, i, j)
+            if not is_wall_space:
+                if randint(0,100) &lt; int((float(len(special_cells)) / number_of_active_cells)*100):
+                    index = randint(0, len(special_cells)-1)
+                    row.append(special_cells[index])
+                    if special_cells[index].get_cell_type() == CellType.STARTING_CELL:
+                        start_x = (j - 1) / 2
+                        start_y = (i - 1) / 2
+                    special_cells.pop(index)
+                else:
+                    row.append(CellEmpty())
+                number_of_active_cells -= 1
+
+        self.__labyrinth.append(row)
+    return start_x, start_y</code></pre>
+</details>
+</dd>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.generate_random_exit"><code class="name flex">
+<span>def <span class="ident">generate_random_exit</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Generate a random location for the exit</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_random_exit(self):
+    &#34;&#34;&#34; Generate a random location for the exit&#34;&#34;&#34;
+    exit_x = randint(1, self.__size) * 2 - 1
+    exit_y = randint(1, self.__size) * 2 - 1
+    if randint(0, 1) == 0:
+        exit_x = randint(0, 1) * (self.__size * 2)
+    else:
+        exit_y = randint(0, 1) * (self.__size * 2)
+    return exit_x, exit_y</code></pre>
+</details>
+</dd>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.generate_walls"><code class="name flex">
+<span>def <span class="ident">generate_walls</span></span>(<span>self, exit_x, exit_y, grid_size, row, i, j)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>It generates the monolith, the exit and the walls. A classic wall has a 40% chance to pop randomly</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_walls(self, exit_x, exit_y, grid_size, row, i, j):
+    &#34;&#34;&#34;It generates the monolith, the exit and the walls. A classic wall has a 40% chance to pop randomly&#34;&#34;&#34;
+    if exit_x == j and exit_y == i:
+        row.append(CellNoWall())
+    elif i == 0 or i == grid_size - 1 or j == 0 or j == grid_size - 1:  # monolith
+        row.append(CellMonolith())
+    elif i % 2 == 0 or j % 2 == 0:
+        if randint(1, 10) &lt; 4:
+            row.append(CellWall())
+        else:
+            row.append(CellNoWall())
+    else:
+        return False
+    return True</code></pre>
+</details>
+</dd>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.get_labyrinth"><code class="name flex">
+<span>def <span class="ident">get_labyrinth</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_labyrinth(self):
+    return self.__labyrinth</code></pre>
+</details>
+</dd>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.get_size"><code class="name flex">
+<span>def <span class="ident">get_size</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_size(self):
+    return self.__size</code></pre>
+</details>
+</dd>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.initialize_special_cells"><code class="name flex">
+<span>def <span class="ident">initialize_special_cells</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>All cells that have an action and a specific location are prepared here and returned in an array</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def initialize_special_cells(self):
+    &#34;&#34;&#34;All cells that have an action and a specific location are prepared here and returned in an array&#34;&#34;&#34;
+    nb_wormholes = 0
+    if self.__size &lt; 7:
+        nb_wormholes = 3
+    elif self.__size &lt; 9:
+        nb_wormholes = 4
+    else:
+        nb_wormholes = 5
+    special_cells = [CellWormhole(i+1, nb_wormholes) for i in range(nb_wormholes)]
+    special_cells += [CellTreasure(), CellStart()]
+    return special_cells</code></pre>
+</details>
+</dd>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.set_cell"><code class="name flex">
+<span>def <span class="ident">set_cell</span></span>(<span>self, pos_x, pos_y, cell)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Sets a cell at a specific location</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_cell(self, pos_x: int, pos_y: int, cell):
+    &#34;&#34;&#34;Sets a cell at a specific location&#34;&#34;&#34;
+    self.__labyrinth[pos_y][pos_x] = cell</code></pre>
+</details>
+</dd>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.set_labyrinth"><code class="name flex">
+<span>def <span class="ident">set_labyrinth</span></span>(<span>self, labyrinth)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_labyrinth(self, labyrinth):
+    self.__labyrinth = labyrinth</code></pre>
+</details>
+</dd>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.set_size"><code class="name flex">
+<span>def <span class="ident">set_size</span></span>(<span>self, size)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_size(self, size):
+    self.__size = size</code></pre>
+</details>
+</dd>
+<dt id="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.show_labyrinth"><code class="name flex">
+<span>def <span class="ident">show_labyrinth</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>print each cells of the labyrinth</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_labyrinth(self):
+    &#34;&#34;&#34;print each cells of the labyrinth&#34;&#34;&#34;
+    for i in self.__labyrinth:
+        for j in i:
+            print(j, end=&#34;&#34;)
+        print(&#34;&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="terra-incognita.impl.labyrinth" href="index.html">terra-incognita.impl.labyrinth</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth">Labyrinth</a></code></h4>
+<ul class="">
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.export_labyrinth" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.export_labyrinth">export_labyrinth</a></code></li>
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.generate_labyrinth" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.generate_labyrinth">generate_labyrinth</a></code></li>
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.generate_random_exit" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.generate_random_exit">generate_random_exit</a></code></li>
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.generate_walls" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.generate_walls">generate_walls</a></code></li>
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.get_labyrinth" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.get_labyrinth">get_labyrinth</a></code></li>
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.get_size" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.get_size">get_size</a></code></li>
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.initialize_special_cells" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.initialize_special_cells">initialize_special_cells</a></code></li>
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.set_cell" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.set_cell">set_cell</a></code></li>
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.set_labyrinth" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.set_labyrinth">set_labyrinth</a></code></li>
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.set_size" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.set_size">set_size</a></code></li>
+<li><code><a title="terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.show_labyrinth" href="#terra-incognita.impl.labyrinth.Labyrinth.Labyrinth.show_labyrinth">show_labyrinth</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

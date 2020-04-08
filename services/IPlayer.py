@@ -3,7 +3,7 @@ from impl.labyrinth.Labyrinth import Labyrinth
 
 
 class IPlayer(metaclass=ABCMeta):
-
+    """interface for the player class"""
     @abstractmethod
     def move_up(self, labyrinth: Labyrinth): pass
 

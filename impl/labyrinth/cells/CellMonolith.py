@@ -4,6 +4,7 @@ from services.ICell import ICell
 
 
 class CellMonolith(Cell, ICell):
+    """Cell Monolith, it is an uncrossable cell placed all around the labyrinth"""
 
     def __init__(self):
         super().__init__(CellType.MONOLITH)

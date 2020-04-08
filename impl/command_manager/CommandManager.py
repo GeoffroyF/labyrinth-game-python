@@ -3,6 +3,7 @@ from services.commands import IUserCommand
 
 
 class CommandManager:
+    """Class to manage all commands given by the player"""
 
     def __init__(self):
         self.__supported_commands = CommandManager.make_commands_dict(
@@ -22,6 +23,7 @@ class CommandManager:
              ])
 
     def parse_user_input(self, user_input):
+        """Parse the user input and return the command if it is available"""
         tokens = user_input.strip().split(" ")
 
         if len(tokens) == 0:
@@ -37,6 +39,7 @@ class CommandManager:
 
     @staticmethod
     def eval_command(cmd: IUserCommand, args, labyrinth, player):
+        """Executes the command"""
         if cmd.get_args_count() != len(args):
             return (False, "Invalid number of args. Expected: "
                     + str(cmd.get_args_count()) + ", " + "got: " + str(len(args)))
@@ -44,6 +47,7 @@ class CommandManager:
 
     @staticmethod
     def make_commands_dict(cmd_lst):
+        """Creates a dictionary with the commands & the command name"""
         cmd_dict = dict()
         for cmd in cmd_lst:
             cmd_dict[cmd.get_command_tag().lower().strip()] = cmd

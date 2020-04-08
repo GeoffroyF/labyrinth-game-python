@@ -4,6 +4,7 @@ from services.commands import IUserCommand
 
 
 class Quit(IUserCommand):
+    """ Quit command to stop the game"""
     def get_command_tag(self):
         return "quit"
 
@@ -15,6 +16,7 @@ class Quit(IUserCommand):
 
 
 class GoUp(IUserCommand):
+    """Triggers move up action"""
     def get_command_tag(self):
         return "go-up"
 
@@ -28,6 +30,7 @@ class GoUp(IUserCommand):
 
 
 class GoDown(IUserCommand):
+    """Triggers move down action"""
     def get_command_tag(self):
         return "go-down"
 
@@ -41,6 +44,7 @@ class GoDown(IUserCommand):
 
 
 class GoLeft(IUserCommand):
+    """Triggers move left action"""
     def get_command_tag(self):
         return "go-left"
 
@@ -54,6 +58,7 @@ class GoLeft(IUserCommand):
 
 
 class GoRight(IUserCommand):
+    """Triggers move right action"""
     def get_command_tag(self):
         return "go-right"
 
@@ -67,6 +72,7 @@ class GoRight(IUserCommand):
 
 
 class Skip(IUserCommand):
+    """Skip the player turn and trigger the current cell action"""
     def get_command_tag(self):
         return "skip"
 
@@ -99,6 +105,7 @@ class GoRightShort(GoRight):
 
 
 class ShowLabyrinth(IUserCommand):
+    """prints the labyrinth in the console"""
     def get_command_tag(self):
         return "show"
 
@@ -111,6 +118,7 @@ class ShowLabyrinth(IUserCommand):
 
 
 class SaveGame(IUserCommand):
+    """Saves the game to the given filename"""
     def get_command_tag(self):
         return "save"
 
@@ -127,6 +135,7 @@ class SaveGame(IUserCommand):
 
 
 class LoadGame(IUserCommand):
+    """load game from the given filename"""
     def get_command_tag(self):
         return "load"
 

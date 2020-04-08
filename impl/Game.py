@@ -14,6 +14,7 @@ class Game:
         print("Welcome to the Labyrinth Game")
 
     def initialize_game(self):
+        """ Initialize the game by asking to choose to create a new game or to load a previous one."""
         game_init_method = ""
         while game_init_method != "load" and game_init_method != "new":
             game_init_method = input("Do you want to load or start a new game ? [load/new]: ")
@@ -40,10 +41,8 @@ class Game:
                 except:
                     print("error while loading, verify the file name.")
 
-
-
-
     def start(self):
+        """Starts the game loop"""
         command_manager = CommandManager()
         finished = False
         message = ""
