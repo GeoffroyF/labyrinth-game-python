@@ -2,7 +2,7 @@ import unittest
 
 from impl.Player import Player
 from impl.command_manager.commands import Quit, GoUp, GoDown, GoLeft, GoRight, Skip, ShowLabyrinth, GoUpShort, \
-    GoDownShort, GoLeftShort, GoRightShort
+    GoDownShort, GoLeftShort, GoRightShort, SaveGame, LoadGame
 from impl.labyrinth.Labyrinth import Labyrinth
 
 
@@ -103,6 +103,24 @@ class CommandsTest(unittest.TestCase):
         self.assertEqual(GoDownShort().get_command_tag(), "s")
         self.assertEqual(GoLeftShort().get_command_tag(), "q")
         self.assertEqual(GoRightShort().get_command_tag(), "d")
+
+    def test_save(self):
+        cmd = SaveGame()
+        labyrinth = Labyrinth(4)
+        player_pos_x, player_pos_y = labyrinth.generate_labyrinth()
+        player = Player(int(player_pos_x), int(player_pos_y))
+
+        self.assertEqual(cmd.get_command_tag(), "save")
+        self.assertEqual(cmd.get_args_count(), 1)
+
+    def test_load(self):
+        cmd = LoadGame()
+        labyrinth = Labyrinth(4)
+        player_pos_x, player_pos_y = labyrinth.generate_labyrinth()
+        player = Player(int(player_pos_x), int(player_pos_y))
+
+        self.assertEqual(cmd.get_command_tag(), "load")
+        self.assertEqual(cmd.get_args_count(), 1)
 
 
 if __name__ == '__main__':

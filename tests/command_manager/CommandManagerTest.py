@@ -9,7 +9,7 @@ class CommandManagerTest(unittest.TestCase):
 
     def test_parse_user_input(self):
         command_manager = CommandManager()
-        commands = ["quit", "go-down", "go-up", "go-left", "go-right", "skip", "show"]
+        commands = ["quit", "go-down", "go-up", "go-left", "go-right", "skip", "show", "save", "load"]
         for i in range(len(commands)):
             cmd, tokens, message = command_manager.parse_user_input(commands[i])
             self.assertEqual(cmd.get_command_tag() == commands[i], True)
