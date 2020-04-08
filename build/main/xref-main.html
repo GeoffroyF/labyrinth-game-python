@@ -1419,6 +1419,7 @@ imported by:
  &#8226;   <a href="#locale">locale</a>
  &#8226;   <a href="#logging">logging</a>
  &#8226;   <a href="#main.py">main.py</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#platform">platform</a>
  &#8226;   <a href="#pprint">pprint</a>
@@ -1478,6 +1479,7 @@ imported by:
     <a href="#_threading_local">_threading_local</a>
  &#8226;   <a href="#getpass">getpass</a>
  &#8226;   <a href="#importlib.util">importlib.util</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#plistlib">plistlib</a>
  &#8226;   <a href="#unittest.case">unittest.case</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
@@ -4720,6 +4722,7 @@ imported by:
     <a href="#gettext">gettext</a>
  &#8226;   <a href="#gzip">gzip</a>
  &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#socket">socket</a>
  &#8226;   <a href="#socketserver">socketserver</a>
@@ -4746,6 +4749,7 @@ imports:
 imported by:
     <a href="#bdb">bdb</a>
  &#8226;   <a href="#glob">glob</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#tracemalloc">tracemalloc</a>
  &#8226;   <a href="#unittest.loader">unittest.loader</a>
@@ -4805,6 +4809,7 @@ imported by:
  &#8226;   <a href="#locale">locale</a>
  &#8226;   <a href="#main.py">main.py</a>
  &#8226;   <a href="#operator">operator</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#re">re</a>
@@ -4950,7 +4955,8 @@ imported by:
   <a name="grp"></a>
   <tt>grp</tt> <span class="moduletype"><i>(builtin module)</i></span>  <div class="import">
 imported by:
-    <a href="#shutil">shutil</a>
+    <a href="#pathlib">pathlib</a>
+ &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#tarfile">tarfile</a>
 
   </div>
@@ -5179,6 +5185,7 @@ imported by:
     <a href="#impl.Game">impl.Game</a>
  &#8226;   <a href="#impl.Player">impl.Player</a>
  &#8226;   <a href="#impl.command_manager">impl.command_manager</a>
+ &#8226;   <a href="#impl.game_saving">impl.game_saving</a>
  &#8226;   <a href="#impl.labyrinth">impl.labyrinth</a>
  &#8226;   <a href="#impl.objects">impl.objects</a>
 
@@ -5194,6 +5201,7 @@ imports:
     <a href="#impl">impl</a>
  &#8226;   <a href="#impl.Player">impl.Player</a>
  &#8226;   <a href="#impl.command_manager.CommandManager">impl.command_manager.CommandManager</a>
+ &#8226;   <a href="#impl.game_saving.GameSaver">impl.game_saving.GameSaver</a>
  &#8226;   <a href="#impl.labyrinth.Labyrinth">impl.labyrinth.Labyrinth</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#sys">sys</a>
@@ -5269,12 +5277,67 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#impl.command_manager">impl.command_manager</a>
+ &#8226;   <a href="#impl.game_saving.GameLoader">impl.game_saving.GameLoader</a>
+ &#8226;   <a href="#impl.game_saving.GameSaver">impl.game_saving.GameSaver</a>
  &#8226;   <a href="#services.commands">services.commands</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#impl.command_manager.CommandManager">impl.command_manager.CommandManager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="impl.game_saving"></a>
+  <a target="code" href="-" type="text/plain"><tt>impl.game_saving</tt></a>
+<span class="moduletype">NamespacePackage</span>  <div class="import">
+imports:
+    <a href="#impl">impl</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#impl.game_saving.GameLoader">impl.game_saving.GameLoader</a>
+ &#8226;   <a href="#impl.game_saving.GameSaver">impl.game_saving.GameSaver</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="impl.game_saving.GameLoader"></a>
+  <a target="code" href="/home/jo/PycharmProjects/terra-incognita/impl/game_saving/GameLoader.py" type="text/plain"><tt>impl.game_saving.GameLoader</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#impl.game_saving">impl.game_saving</a>
+ &#8226;   <a href="#os">os</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#impl.command_manager.commands">impl.command_manager.commands</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="impl.game_saving.GameSaver"></a>
+  <a target="code" href="/home/jo/PycharmProjects/terra-incognita/impl/game_saving/GameSaver.py" type="text/plain"><tt>impl.game_saving.GameSaver</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#impl.game_saving">impl.game_saving</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#impl.Game">impl.Game</a>
+ &#8226;   <a href="#impl.command_manager.commands">impl.command_manager.commands</a>
 
   </div>
 
@@ -5806,6 +5869,7 @@ imported by:
  &#8226;   <a href="#lzma">lzma</a>
  &#8226;   <a href="#main.py">main.py</a>
  &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#plistlib">plistlib</a>
  &#8226;   <a href="#pprint">pprint</a>
@@ -6080,6 +6144,7 @@ imported by:
 imported by:
     <a href="#ntpath">ntpath</a>
  &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#shutil">shutil</a>
 
   </div>
@@ -6103,6 +6168,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#os">os</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
 
   </div>
 
@@ -6158,6 +6224,7 @@ imported by:
  &#8226;   <a href="#enum">enum</a>
  &#8226;   <a href="#inspect">inspect</a>
  &#8226;   <a href="#main.py">main.py</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
 
   </div>
 
@@ -6229,6 +6296,8 @@ imported by:
  &#8226;   <a href="#gzip">gzip</a>
  &#8226;   <a href="#http.client">http.client</a>
  &#8226;   <a href="#http.server">http.server</a>
+ &#8226;   <a href="#impl.game_saving.GameLoader">impl.game_saving.GameLoader</a>
+ &#8226;   <a href="#impl.game_saving.GameSaver">impl.game_saving.GameSaver</a>
  &#8226;   <a href="#inspect">inspect</a>
  &#8226;   <a href="#linecache">linecache</a>
  &#8226;   <a href="#locale">locale</a>
@@ -6238,6 +6307,7 @@ imported by:
  &#8226;   <a href="#netrc">netrc</a>
  &#8226;   <a href="#ntpath">ntpath</a>
  &#8226;   <a href="#optparse">optparse</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#platform">platform</a>
@@ -6263,6 +6333,38 @@ imported by:
  &#8226;   <a href="#xml.sax">xml.sax</a>
  &#8226;   <a href="#xml.sax.saxutils">xml.sax.saxutils</a>
  &#8226;   <a href="#zipfile">zipfile</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pathlib"></a>
+  <a target="code" href="/usr/lib/python3.6/pathlib.py" type="text/plain"><tt>pathlib</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#collections">collections</a>
+ &#8226;   <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#errno">errno</a>
+ &#8226;   <a href="#fnmatch">fnmatch</a>
+ &#8226;   <a href="#functools">functools</a>
+ &#8226;   <a href="#grp">grp</a>
+ &#8226;   <a href="#io">io</a>
+ &#8226;   <a href="#nt">nt</a>
+ &#8226;   <a href="#ntpath">ntpath</a>
+ &#8226;   <a href="#operator">operator</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#posixpath">posixpath</a>
+ &#8226;   <a href="#pwd">pwd</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#stat">stat</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#urllib.parse">urllib.parse</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#impl.game_saving.GameSaver">impl.game_saving.GameSaver</a>
 
   </div>
 
@@ -6472,6 +6574,7 @@ imported by:
  &#8226;   <a href="#http.server">http.server</a>
  &#8226;   <a href="#mimetypes">mimetypes</a>
  &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#posixpath">posixpath</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
 
@@ -6509,6 +6612,7 @@ imported by:
     <a href="#getpass">getpass</a>
  &#8226;   <a href="#http.server">http.server</a>
  &#8226;   <a href="#netrc">netrc</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#posixpath">posixpath</a>
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#tarfile">tarfile</a>
@@ -6715,6 +6819,7 @@ imported by:
  &#8226;   <a href="#keyword">keyword</a>
  &#8226;   <a href="#locale">locale</a>
  &#8226;   <a href="#main.py">main.py</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#platform">platform</a>
@@ -7125,6 +7230,7 @@ imported by:
  &#8226;   <a href="#netrc">netrc</a>
  &#8226;   <a href="#ntpath">ntpath</a>
  &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#posixpath">posixpath</a>
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#tarfile">tarfile</a>
@@ -7278,6 +7384,7 @@ imported by:
  &#8226;   <a href="#ntpath">ntpath</a>
  &#8226;   <a href="#optparse">optparse</a>
  &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#pdb">pdb</a>
  &#8226;   <a href="#pickle">pickle</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
@@ -7917,6 +8024,7 @@ imported by:
  &#8226;   <a href="#http.server">http.server</a>
  &#8226;   <a href="#mimetypes">mimetypes</a>
  &#8226;   <a href="#nturl2path">nturl2path</a>
+ &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
  &#8226;   <a href="#xml.sax.saxutils">xml.sax.saxutils</a>

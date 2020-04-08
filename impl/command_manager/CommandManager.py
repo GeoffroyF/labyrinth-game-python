@@ -16,7 +16,9 @@ class CommandManager:
              GoUpShort(),
              GoRightShort(),
              GoLeftShort(),
-             GoDownShort()
+             GoDownShort(),
+             SaveGame(),
+             LoadGame()
              ])
 
     def parse_user_input(self, user_input):
