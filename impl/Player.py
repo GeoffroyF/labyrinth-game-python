@@ -21,6 +21,9 @@ class Player(IPlayer):
     def get_objects(self):
         return self.__objects
 
+    def set_objects(self, objects):
+        self.__objects = objects
+
     def get_current_cell(self, labyrinth: Labyrinth):
         return labyrinth.get_labyrinth()[(self.__pos_y * 2 + 1)][self.__pos_x * 2 + 1]
 

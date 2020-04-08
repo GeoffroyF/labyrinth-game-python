@@ -22,6 +22,12 @@ class Labyrinth:
     def get_size(self):
         return self.__size
 
+    def set_size(self, size):
+        self.__size = size
+
+    def set_labyrinth(self, labyrinth):
+        self.__labyrinth = labyrinth
+
     def generate_random_exit(self):
         exit_x = randint(1, self.__size) * 2 - 1
         exit_y = randint(1, self.__size) * 2 - 1
@@ -88,6 +94,14 @@ class Labyrinth:
             for j in i:
                 print(j, end="")
             print("")
+
+    def export_labyrinth(self):
+        export = ""
+        for i in self.__labyrinth:
+            for j in i:
+                export += str(j)
+            export += "\n"
+        return export
 
     def set_cell(self, pos_x: int, pos_y: int, cell):
         self.__labyrinth[pos_y][pos_x] = cell

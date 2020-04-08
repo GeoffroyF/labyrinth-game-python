@@ -1,3 +1,5 @@
+from impl.game_saving.GameLoader import GameLoader
+from impl.game_saving.GameSaver import GameSaver
 from services.commands import IUserCommand
 
 
@@ -106,3 +108,35 @@ class ShowLabyrinth(IUserCommand):
     def evaluate(self, args, labyrinth, player):
         labyrinth.show_labyrinth()
         return False, "labyrinth shown"
+
+
+class SaveGame(IUserCommand):
+    def get_command_tag(self):
+        return "save"
+
+    def get_args_count(self):
+        return 1
+
+    def evaluate(self, args, labyrinth, player):
+        saver = GameSaver()
+        try:
+            saver.save_game(args, player, labyrinth)
+        except:
+            return False, "error while saving"
+        return False, "Game saved successfully"
+
+
+class LoadGame(IUserCommand):
+    def get_command_tag(self):
+        return "load"
+
+    def get_args_count(self):
+        return 1
+
+    def evaluate(self, args, labyrinth, player):
+        loader = GameLoader()
+        try:
+            loader.load_game(args, player, labyrinth)
+        except:
+            return False, "error while loading"
+        return False, "Game loaded successfully"
