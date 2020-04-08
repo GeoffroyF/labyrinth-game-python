@@ -2,6 +2,7 @@ from abc import ABCMeta, abstractmethod
 
 
 class ICell(metaclass=ABCMeta):
+    """INterface for all cells"""
 
     @abstractmethod
     def __str__(self) -> str: pass

@@ -6,6 +6,7 @@ from services.ICell import ICell
 
 
 class CellTreasure(Cell, ICell):
+    """Treasure Cell, when the player goes on this cell, he takes the treasure in his inventory"""
 
     def __init__(self):
         super().__init__(CellType.TREASURE)
@@ -14,6 +15,7 @@ class CellTreasure(Cell, ICell):
         return "T"
 
     def execute_action(self, labyrinth,  player):
+        """adds up the treasure to the player's inventory"""
         player.add_object(Treasure())
         p_x, p_y = player.get_pos()
         labyrinth.set_cell(p_x * 2 + 1, p_y * 2 + 1, CellEmpty())

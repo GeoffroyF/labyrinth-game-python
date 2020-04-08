@@ -4,6 +4,7 @@ from services.ICell import ICell
 
 
 class CellEmpty(Cell, ICell):
+    """Empty cell where the player can walk"""
 
     def __init__(self):
         super().__init__(CellType.EMPTY)

@@ -15,6 +15,10 @@ The lecturer of this Course is Graninas : https://github.com/graninas
 
 Created using vanilla `python3`
 
+Doc generated using `pdoc3`
+
+Distribution created using `pyinstaller`
+
 ## Build a distribution
 install pyinstaller using pip:
 
@@ -23,6 +27,18 @@ install pyinstaller using pip:
 create you own distribution. It will be located in dist/main.
 
 `pyinstaller main.py`
+
+## Build documentation
+Install pdoc3 : 
+
+`pip3 install pdoc3`
+
+To build html documentation use :
+
+`pdoc3 --html impl`
+`pdoc3 --html services`
+`pdoc3 --html tests`
+
  
 ## Start the Game
 to start the game you can execute the latest distribution (available for linux environment)

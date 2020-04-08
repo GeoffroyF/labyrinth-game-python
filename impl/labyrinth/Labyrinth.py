@@ -11,6 +11,7 @@ from impl.labyrinth.cells.CellWormhole import CellWormhole
 
 
 class Labyrinth:
+    """Labyrinth Class, it features the generation and the management of cells"""
 
     def __init__(self, size: int):
         self.__size = size
@@ -29,6 +30,7 @@ class Labyrinth:
         self.__labyrinth = labyrinth
 
     def generate_random_exit(self):
+        """ Generate a random location for the exit"""
         exit_x = randint(1, self.__size) * 2 - 1
         exit_y = randint(1, self.__size) * 2 - 1
         if randint(0, 1) == 0:
@@ -38,6 +40,7 @@ class Labyrinth:
         return exit_x, exit_y
 
     def initialize_special_cells(self):
+        """All cells that have an action and a specific location are prepared here and returned in an array"""
         nb_wormholes = 0
         if self.__size < 7:
             nb_wormholes = 3
@@ -50,6 +53,7 @@ class Labyrinth:
         return special_cells
 
     def generate_walls(self, exit_x, exit_y, grid_size, row, i, j):
+        """It generates the monolith, the exit and the walls. A classic wall has a 40% chance to pop randomly"""
         if exit_x == j and exit_y == i:
             row.append(CellNoWall())
         elif i == 0 or i == grid_size - 1 or j == 0 or j == grid_size - 1:  # monolith
@@ -64,6 +68,7 @@ class Labyrinth:
         return True
 
     def generate_labyrinth(self):
+        """Main generation function that either trigger the geenrate walls , put an empy cell or put a special cell"""
         special_cells = self.initialize_special_cells()
 
         exit_x, exit_y = self.generate_random_exit()
@@ -90,12 +95,14 @@ class Labyrinth:
         return start_x, start_y
 
     def show_labyrinth(self):
+        """print each cells of the labyrinth"""
         for i in self.__labyrinth:
             for j in i:
                 print(j, end="")
             print("")
 
     def export_labyrinth(self):
+        """:returns a string with the labyinth represented by symbols"""
         export = ""
         for i in self.__labyrinth:
             for j in i:
@@ -104,4 +111,5 @@ class Labyrinth:
         return export
 
     def set_cell(self, pos_x: int, pos_y: int, cell):
+        """Sets a cell at a specific location"""
         self.__labyrinth[pos_y][pos_x] = cell

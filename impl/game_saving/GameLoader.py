@@ -11,11 +11,13 @@ from impl.objects.Treasure import Treasure
 
 
 class GameLoader:
+    """Class to load the game from a save file"""
 
     def __init__(self):
         pass
 
     def load_game(self, args, player, labyrinth):
+        """main method to load the game, opens a file, retrieve the information, and sets the new values"""
         file = self.open_file(args)
         lines = file.readlines()
 
@@ -35,6 +37,7 @@ class GameLoader:
         return True
 
     def open_file(self, args):
+        """Opens the file if it exists"""
         file_exists = os.path.exists("saved_games/" + args[0] + ".txt")
         if not file_exists:
             raise FileExistsError()
@@ -45,6 +48,7 @@ class GameLoader:
                 raise IOError
 
     def get_inventory_objects_from_symbols(self, inventory_symbols):
+        """For each object symbols, it return an instance."""
         comparison_dict = {
             "T": Treasure()
         }
@@ -54,6 +58,7 @@ class GameLoader:
         return inventory_objects
 
     def get_labyrinth_from_symbols(self, laby_symbols):
+        """For each cell symbol, returns an instance of the cell class"""
         comparison_dict = {
             '*': CellEmpty(),
             'M': CellMonolith(),
@@ -75,6 +80,7 @@ class GameLoader:
         return laby
 
     def find_wormhole_number(self, laby_symbols):
+        """:returns the number of wormholes in the map"""
         nb = 0
         for line in laby_symbols:
             for sym in line:
