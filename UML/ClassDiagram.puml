@@ -1,0 +1,264 @@
+@startuml
+
+
+IPlayer <|.. Player
+
+IUserCommand <|.. Quit
+IUserCommand <|.. ShowLabyrinth
+IUserCommand <|.. GoUp
+IUserCommand <|.. GoDown
+IUserCommand <|.. GoLeft
+IUserCommand <|.. GoRight
+IUserCommand <|.. Skip
+IUserCommand <|.. SaveGame
+IUserCommand <|.. LoadGame
+
+GoUp    <|-- GoUpShort
+GoDown  <|-- GoDownShort
+GoLeft  <|-- GoLeftShort
+GoRight <|-- GoRightShort
+
+ICell <|.. CellEmpty
+ICell <|.. CellMonolith
+ICell <|.. CellNoWall
+ICell <|.. CellStart
+ICell <|.. CellTreasure
+ICell <|.. CellWall
+ICell <|.. CellWormhole
+
+Cell <|-- CellEmpty
+Cell <|-- CellMonolith
+Cell <|-- CellNoWall
+Cell <|-- CellStart
+Cell <|-- CellTreasure
+Cell <|-- CellWall
+Cell <|-- CellWormhole
+
+LabyrinthObject <|-- Treasure
+
+Main --> Game
+Game *-- Labyrinth
+Game *-- Player
+Game *-- CommandManager
+
+CommandManager *-- Quit
+CommandManager *-- ShowLabyrinth
+CommandManager *-- GoUp
+CommandManager *-- GoDown
+CommandManager *-- GoLeft
+CommandManager *-- GoRight
+CommandManager *-- Skip
+CommandManager *-- SaveGame
+CommandManager *-- LoadGame
+
+Player <-- GoUp
+Player <-- GoDown
+Player <-- GoLeft
+Player <-- GoRight
+
+LoadGame --> GameLoader
+SaveGame --> GameSaver
+
+ShowLabyrinth --> Labyrinth
+
+Player --> Labyrinth
+Player --> Cell
+
+Labyrinth *-- Cell
+CellTreasure *-- Treasure
+
+CellType <-- Labyrinth
+CellType <-- Player
+CellType <-- Cell
+
+
+
+
+
+class Main {
+}
+
+interface ICell {
+    __str__()
+    execute_action(labyrinth: Labyrinth, player: Player)
+}
+interface IPlayer {
+    move_up(labyrinth: Labyrinth)
+    move_down(labyrinth: Labyrinth)
+    move_left(labyrinth: Labyrinth)
+    move_right(labyrinth: Labyrinth)
+}
+interface IUserCommand {
+    get_command_tag()
+    get_args_count()
+    evaluate(args: list, labyrinth: Labyrinth, player: Player)
+}
+
+class Player {
+    __objects : List
+    __pos_x : int
+    __pos_y : int
+    add_object(obj: LabyrinthObject)
+    remove_object(obj, LabyrinthObject)
+    get_current_cell(labyrinth: Labyrinth)
+    execute_cell_action(labyrinth: Labyrinth)
+    move_up(labyrinth: Labyrinth)
+    move_down(labyrinth: Labyrinth)
+    move_left(labyrinth: Labyrinth)
+    move_right(labyrinth: Labyrinth)
+    player_has_treasure()
+}
+
+class Game {
+    __labyrinth : Labyrinth
+    __player : Player
+    initialize_game()
+    start()
+}
+
+class LabyrinthObject{
+}
+class Treasure {
+    __str__()
+}
+
+class Labyrinth {
+    __size: int
+    __labyrinth: List
+    generate_random_exit()
+    initialize_special_cells()
+    generate_walls(exit_x: int, exit_y: int, grid_size: int, row: List, i: int, j: int)
+    generate_labyrinth()
+    show_labyrinth()
+    export_labyrinth()
+    set_cell(pos_x: int, pos_y: int, cell: Cell)
+}
+
+class Cell {
+    __cell_type: CellType
+    get_cell_type()
+}
+
+enum CellType {
+    EMPTY
+    STARTING_CELL
+    TREASURE
+    WALL
+    MONOLITH
+    NO_WALL
+    WORMHOLE
+}
+
+class CellEmpty{
+    __str__()
+    execute_action(labyrinth: Labyrinth, player: Player)
+}
+class CellMonolith{
+    __str__()
+    execute_action(labyrinth: Labyrinth, player: Player)
+}
+class CellNoWall{
+    __str__()
+    execute_action(labyrinth: Labyrinth, player: Player)
+}
+class CellStart{
+    __str__()
+    execute_action(labyrinth: Labyrinth, player: Player)
+}
+class CellTreasure{
+    __str__()
+    execute_action(labyrinth: Labyrinth, player: Player)
+}
+class CellWall{
+    __str__()
+    execute_action(labyrinth: Labyrinth, player: Player)
+}
+class CellWormhole{
+    __str__()
+    execute_action(labyrinth: Labyrinth, player: Player)
+}
+
+class GameSaver {
+    save_game(args: List, player: Player, labyrinth: Labyrinth)
+    create_dir_and_file(args: List)
+}
+
+class GameLoader {
+    load_game(args: List, player: Player, labyrinth: Player)
+    open_file(args: List)
+    get_inventory_objects_from_symbols(inventory_simbols: List)
+    get_labyrinth_from_symbols(laby_symbols: List)
+    find_wormhole_number(laby_symbols: List)
+}
+
+class CommandManager {
+    __supported_commands: List
+    parse_user_input(user_input: str)
+    eval_command(cmd: IUserCommand, args: List, labyrinth: Labyrinth, player: Player)
+    make_commands_dict(cmd_lst: List)
+}
+
+class Quit {
+    get_command_tag()
+    get_args_count()
+    evaluate(args: List, labyrinth: Labyrinth, player: Player)
+}
+
+class GoUp {
+    get_command_tag()
+    get_args_count()
+    evaluate(args: List, labyrinth: Labyrinth, player: Player)
+}
+
+class GoDown {
+    get_command_tag()
+    get_args_count()
+    evaluate(args: List, labyrinth: Labyrinth, player: Player)
+}
+
+class GoLeft {
+    get_command_tag()
+    get_args_count()
+    evaluate(args: List, labyrinth: Labyrinth, player: Player)
+}
+class GoRight {
+    get_command_tag()
+    get_args_count()
+    evaluate(args: List, labyrinth: Labyrinth, player: Player)
+}
+class Skip {
+    get_command_tag()
+    get_args_count()
+    evaluate(args: List, labyrinth: Labyrinth, player: Player)
+}
+class GoUpShort {
+    get_command_tag()
+}
+class GoDownShort {
+    get_command_tag()
+}
+class GoRightShort {
+    get_command_tag()
+}
+class GoLeftShort {
+    get_command_tag()
+}
+class ShowLabyrinth {
+    get_command_tag()
+    get_args_count()
+    evaluate(args: List, labyrinth: Labyrinth, player: Player)
+}
+class SaveGame {
+    get_command_tag()
+    get_args_count()
+    evaluate(args: List, labyrinth: Labyrinth, player: Player)
+}
+class LoadGame {
+    get_command_tag()
+    get_args_count()
+    evaluate(args: List, labyrinth: Labyrinth, player: Player)
+}
+
+
+
+@enduml
