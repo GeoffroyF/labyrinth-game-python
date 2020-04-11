@@ -20,7 +20,6 @@ class GameLoader:
         """main method to load the game, opens a file, retrieve the information, and sets the new values"""
         file = self.open_file(args)
         lines = file.readlines()
-
         # get coordonates
         pos_x, pos_y = map(int, lines[0].replace("\n", "").split(","))
 
@@ -28,7 +27,7 @@ class GameLoader:
         object_inventory = self.get_inventory_objects_from_symbols(inventory)
 
         lab = self.get_labyrinth_from_symbols(lines[2:])
-        lab_size = (len(lab[0]) - 1 )/ 2
+        lab_size = (len(lab[0]) - 1 ) / 2
 
         player.set_pos(pos_x, pos_y)
         player.set_objects(object_inventory)
@@ -54,7 +53,8 @@ class GameLoader:
         }
         inventory_objects = []
         for sym in inventory_symbols:
-            inventory_objects.append(comparison_dict[sym])
+            if sym in comparison_dict:
+                inventory_objects.append(comparison_dict[sym])
         return inventory_objects
 
     def get_labyrinth_from_symbols(self, laby_symbols):
