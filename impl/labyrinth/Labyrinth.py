@@ -1,9 +1,11 @@
 from random import randint
 
 from impl.labyrinth.CellType import CellType
+from impl.labyrinth.cells.CellBear import CellBear
 from impl.labyrinth.cells.CellEmpty import CellEmpty
 from impl.labyrinth.cells.CellMonolith import CellMonolith
 from impl.labyrinth.cells.CellNoWall import CellNoWall
+from impl.labyrinth.cells.CellRiver import CellRiver
 from impl.labyrinth.cells.CellStart import CellStart
 from impl.labyrinth.cells.CellTreasure import CellTreasure
 from impl.labyrinth.cells.CellWall import CellWall
@@ -29,6 +31,12 @@ class Labyrinth:
     def set_labyrinth(self, labyrinth):
         self.__labyrinth = labyrinth
 
+    def get_bear_coord(self):
+        for i in range(self.__size * 2 + 1):
+            for j in range(self.__size * 2 + 1):
+                if self.__labyrinth[i][j].get_cell_type() == CellType.BEAR:
+                    return (i-1)/2, (j-1)/2
+
     def generate_random_exit(self):
         """ Generate a random location for the exit"""
         exit_x = randint(1, self.__size) * 2 - 1
@@ -49,7 +57,7 @@ class Labyrinth:
         else:
             nb_wormholes = 5
         special_cells = [CellWormhole(i+1, nb_wormholes) for i in range(nb_wormholes)]
-        special_cells += [CellTreasure(), CellStart()]
+        special_cells += [CellTreasure(), CellStart(), CellRiver(True), CellBear()]
         return special_cells
 
     def generate_walls(self, exit_x, exit_y, grid_size, row, i, j):
@@ -59,7 +67,7 @@ class Labyrinth:
         elif i == 0 or i == grid_size - 1 or j == 0 or j == grid_size - 1:  # monolith
             row.append(CellMonolith())
         elif i % 2 == 0 or j % 2 == 0:
-            if randint(1, 10) < 4:
+            if randint(1, 10) < 2:
                 row.append(CellWall())
             else:
                 row.append(CellNoWall())
@@ -77,7 +85,8 @@ class Labyrinth:
         number_of_active_cells = self.__size * self.__size
         for i in range(grid_size):
             row = []
-            for j in range(grid_size):
+            j = 0
+            while j < grid_size:
                 is_wall_space = self.generate_walls(exit_x, exit_y, grid_size, row, i, j)
                 if not is_wall_space:
                     if randint(0,100) < int((float(len(special_cells)) / number_of_active_cells)*100):
@@ -86,10 +95,19 @@ class Labyrinth:
                         if special_cells[index].get_cell_type() == CellType.STARTING_CELL:
                             start_x = (j - 1) / 2
                             start_y = (i - 1) / 2
+                        if special_cells[index].get_cell_type() == CellType.RIVER:
+                            if row[j-2].get_cell_type() == CellType.EMPTY and row[j-1].get_cell_type() == CellType.NO_WALL:
+                                row[j-2] = CellRiver(False)
+                            elif j < grid_size - 2:
+                                row.append(CellNoWall())
+                                row.append(CellRiver(False))
+                                j = j+2
+
                         special_cells.pop(index)
                     else:
                         row.append(CellEmpty())
                     number_of_active_cells -= 1
+                j += 1
 
             self.__labyrinth.append(row)
         return start_x, start_y

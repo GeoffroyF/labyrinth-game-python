@@ -9,3 +9,5 @@ class CellType(Enum):
     MONOLITH = "monolith"
     NO_WALL = "no_wall"
     WORMHOLE = "wormhole"
+    RIVER = "river"
+    BEAR = "bear"

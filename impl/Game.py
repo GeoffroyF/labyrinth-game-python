@@ -1,6 +1,7 @@
 import sys
 from random import randint
 
+from impl.Bear import Bear
 from impl.Player import Player
 from impl.game_saving.GameLoader import GameLoader
 from impl.game_saving.GameSaver import GameSaver
@@ -28,6 +29,8 @@ class Game:
             self.__labyrinth = Labyrinth(labyrinth_size)
             player_pos_x, player_pos_y = self.__labyrinth.generate_labyrinth()
             self.__player = Player(int(player_pos_x), int(player_pos_y))
+            bear_y, bear_x = self.__labyrinth.get_bear_coord()
+            self.__bear = Bear(int(bear_x), int(bear_y))
 
         else:
             success = False
@@ -57,6 +60,7 @@ class Game:
                     print(message)
                     continue
                 (finished, message) = CommandManager.eval_command(cmd, args, self.__labyrinth, self.__player)
+                self.__bear.move_random(self.__labyrinth)
                 if message != "": print(message)
             print("End of Game !")
         except:
